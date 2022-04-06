@@ -60,3 +60,21 @@ variable "lambda_env_variables" {
   type        = map(any)
   description = "A map for the Lambda function Environment Variables. Example: {ENCODiNG: \"latin-1\", CORS: \"*\"}"
 }
+
+variable "lambda_managed_policies" {
+  type        = list(any)
+  default     = ["arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"]
+  description = "A list of AWS-managed policies to attach to the Lambda function."
+}
+
+variable "lambda_inline_policy_actions" {
+  type        = list(string)
+  default     = ["logs:ListTagsLogGroup"]
+  description = "A list of actions for the Lambda function inline policies."
+}
+
+variable "lambda_inline_policy_resources" {
+  type        = list(string)
+  default     = ["arn:aws:logs:::log-group:/aws/lambda/*:*"]
+  description = "A list of actions for the Lambda function inline policies."
+}

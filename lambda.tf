@@ -1,6 +1,6 @@
 resource "aws_iam_role" "iam_for_lambda" {
   name                = "${var.api_name}_role"
-  managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"]
+  managed_policy_arns = var.lambda_managed_policies
   assume_role_policy  = <<EOF
 {
     "Version": "2012-10-17",
@@ -11,25 +11,20 @@ resource "aws_iam_role" "iam_for_lambda" {
                 "Service": "lambda.amazonaws.com"
             },
             "Effect": "Allow",
-            "Sid": ""
+            "Sid": "LambdaAssumeRole"
         }
     ]
 }
 EOF
   inline_policy {
-    name = "${var.api_name}_policy"
+    name  = "${var.api_name}_policy"
     policy = jsonencode({
       Version = "2012-10-17"
       Statement = [
         {
-          Action = [
-            "s3:Get*",
-            "s3:List*"
-          ]
-          Effect = "Allow"
-          Resource = [
-            "*"
-          ]
+          Effect   = "Allow"
+          Action   = var.lambda_inline_policy_actions
+          Resource = var.lambda_inline_policy_resources
         }
       ]
     })
