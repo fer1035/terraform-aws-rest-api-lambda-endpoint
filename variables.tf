@@ -51,11 +51,6 @@ variable "api_execution_arn" {
   description = "The execution ARN of the REST API in API Gateway."
 }
 
-variable "api_url" {
-  type        = string
-  description = "The invocation URL of the REST API in API Gateway."
-}
-
 variable "api_endpoint_model" {
   type        = string
   description = "A string representation of a JSON object for allowed and required API request parameters. Example: {\"$schema\": \"http://json-schema.org/draft-04/schema#\", \"title\": \"UserModel\", \"type\": \"object\", \"required\": [\"myname\"], \"properties\": {\"myname\": {\"type\": \"string\"}}, \"additionalProperties\": false}"
