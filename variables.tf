@@ -16,9 +16,14 @@ variable "lambda_key_sha256" {
   description = "The path to the Lambda ZIP file SHA256 hash in the source S3 bucket, generated using: openssl dgst -sha256 -binary api_function.zip | openssl enc -base64 > api_function.zip.sha256.txt"
 }
 
-variable "api_root_id" {
+variable "path_part" {
   type        = string
-  description = "The root resource ID of the REST API in API Gateway."
+  description = "The path part for the endpoint."
+}
+
+variable "parent_id" {
+  type        = string
+  description = "The parent resource ID of the REST API in API Gateway."
 }
 
 variable "api_name" {
