@@ -78,3 +78,15 @@ variable "lambda_inline_policy_resources" {
   default     = ["arn:aws:logs:::log-group:/aws/lambda/*:*"]
   description = "A list of actions for the Lambda function inline policies."
 }
+
+variable "cors" {
+  type        = string
+  default     = "*"
+  description = "API CORS configuration."
+}
+
+variable "http_method" {
+  type        = string
+  default     = "GET"
+  description = "Endpoint HTTP method."
+}
