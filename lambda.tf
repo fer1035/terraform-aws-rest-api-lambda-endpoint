@@ -17,7 +17,7 @@ resource "aws_iam_role" "iam_for_lambda" {
 }
 EOF
   inline_policy {
-    name  = "${var.api_name}_policy"
+    name = "${var.api_name}_policy"
     policy = jsonencode({
       Version = "2012-10-17"
       Statement = [
